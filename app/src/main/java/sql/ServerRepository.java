@@ -30,7 +30,6 @@ public class ServerRepository {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        PERSON_COLUMN_ID + " INTEGER PRIMARY KEY, " +
         values.put(FeedReaderContract.Servers.COLUMN_NAME_TITLE, "serveur1");
         values.put(FeedReaderContract.Servers.COLUMN_NAME_DESCRIPTION, "192.168.0.1");
         long newRowId = db.insert(FeedReaderContract.Servers.TABLE_NAME, null, values);
@@ -46,7 +45,7 @@ public class ServerRepository {
         ArrayList<Server> servers= new ArrayList<Server>();
         Cursor result = db.rawQuery("select rowid, * from "+FeedReaderContract.Servers.TABLE_NAME , null);
         while(result.moveToNext()){
-            servers.add( new Server( result.getColumnIndex(FeedReaderContract.Servers.ROWID) , result.getString(result.getColumnIndex(FeedReaderContract.Servers.COLUMN_NAME_TITLE)), result.getString(result.getColumnIndex(FeedReaderContract.Servers.COLUMN_NAME_DESCRIPTION))));
+            servers.add( new Server( result.getString(result.getColumnIndex(FeedReaderContract.Servers.COLUMN_NAME_TITLE)), result.getString(result.getColumnIndex(FeedReaderContract.Servers.COLUMN_NAME_DESCRIPTION))));
         }
         return servers;
     }
@@ -64,15 +63,15 @@ public class ServerRepository {
 
     }
 
-    public void delete() {
+    public void delete(int id) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         // Define 'where' part of query.
         String selection = FeedReaderContract.Servers.COLUMN_ID + " LIKE ?";
         // Specify arguments in placeholder order.
-        String[] selectionArgs = { "MyTitle" };
+        String[] selectionArgs = { "*" };
         db.delete(FeedReaderContract.Servers.TABLE_NAME, selection, selectionArgs);
-        db.delete(FeedReaderContract.Servers.TABLE_NAME, COLUMN_ROWID +  "=" + id, null) > 0;
+        //db.delete(FeedReaderContract.Servers.TABLE_NAME, COLUMN_ROWID +  "=" + id, null) > 0;
 
 
     }

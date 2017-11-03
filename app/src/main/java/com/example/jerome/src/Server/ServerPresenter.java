@@ -32,6 +32,11 @@ public class ServerPresenter implements ServerContract.Presenter {
 
     }
 
+    @Override
+    public void deleteServer(int id) {
+        mServerRepository.delete(id);
+    }
+
 
 
 

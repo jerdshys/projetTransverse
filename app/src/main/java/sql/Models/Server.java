@@ -8,8 +8,7 @@ public class Server {
     private String description;
     private int id;
 
-    public Server(int id, String name, String description) {
-        this.id = id;
+    public Server(String name, String description) {
         this.title = name;
         this.description = description;
     }

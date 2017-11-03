@@ -4,10 +4,12 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,19 +23,30 @@ import sql.ServerDbHelper;
 import sql.ServerRepository;
 
 
-public class ServerActivity extends ListActivity implements ServerContract.View {
+public class ServerActivity extends FragmentActivity{
     ListView listView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ServerDbHelper helper = new ServerDbHelper(this);
-        ListView listView = (ListView) this.findViewById(android.R.id.list);
-        //getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
         setContentView(R.layout.activity_list);
-        ServerRepository repo = new ServerRepository(this);
-        ServerPresenter mEditServerPresenter = new ServerPresenter(repo ,this);
+
+        // Check that the activity is using the layout version with
+        // the fragment_container FrameLayout
+        if (findViewById(R.id.fragment_container) != null) {
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+            ServerFragment firstFragment = new ServerFragment();
+            firstFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
+        }
+
     }
 
     @Override
@@ -60,22 +73,5 @@ public class ServerActivity extends ListActivity implements ServerContract.View 
         return super.onOptionsItemSelected(item);
     }
 
-
-    @Override
-    public void showServers(ArrayList<Server> servers) {
-        ListAdapter adapter = new ListAdapter(this , R.layout.custom_listview, servers);
-        setListAdapter(adapter);
-    }
-
-    @Override
-    public void openServerDetails() {
-        Intent i = new Intent(getApplicationContext(),EditServerActivity.class);
-        startActivity(i);
-        setContentView(R.layout.activity_list);
-    }
-
-    public interface ServerItemListener {
-        void onServerClick(Server clickedServer);
-    }
 
 }

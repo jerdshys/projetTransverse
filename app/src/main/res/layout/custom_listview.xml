@@ -22,7 +22,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_height="fill_parent"
                 android:text="x"
-                android:id="@+id/button2"
+                android:id="@+id/buttonDelete"
                 android:layout_weight="1" />
 
 
