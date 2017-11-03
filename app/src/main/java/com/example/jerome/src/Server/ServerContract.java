@@ -13,13 +13,14 @@ public interface ServerContract {
         void showServers(ArrayList<Server> servers);
         void openServerDetails();
         void openNewServer();
+        void updateList();
 
     }
 
     interface Presenter  {
         void loadServers();
         void addNewServer();
-        void deleteServer(int id);
+        void deleteServer(Long id);
 
 
     }

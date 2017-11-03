@@ -6,14 +6,15 @@ package sql.Models;
 public class Server {
     private String title;
     private String description;
-    private int id;
+    private Long id;
 
-    public Server(String name, String description) {
+    public Server(Long id,String name, String description) {
+        this.id = id;
         this.title = name;
         this.description = description;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

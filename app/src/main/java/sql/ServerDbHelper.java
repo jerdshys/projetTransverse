@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by jerome on 25/10/2017.
  */
 public class ServerDbHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_CREATE = "CREATE TABLE Servers ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, description TEXT NOT NULL)";
+    private static final String DATABASE_CREATE = "CREATE TABLE Servers ( _id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, description TEXT NOT NULL)";
     public static final String DB_NAME = "myDB.db";
     public static final int DB_VERSION = 2;
 

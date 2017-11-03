@@ -70,6 +70,12 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
         startActivity(i);
     }
 
+    @Override
+    public void updateList() {
+       // myAdapter.remove(myAdapter.getItem(info.position));
+       // myAdapter.notifyDataSetChanged();
+    }
+
 
     /**
      * Listener for clicks on tasks in the ListView.
@@ -111,9 +117,10 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
             View row = inflater.inflate(R.layout.custom_listview, null);
             // set label texts
             TextView label = (TextView) row.findViewById(R.id.label);
-            label.setText(this.items.get(position).getTitle());
+            Server mServer =this.items.get(position);
+            label.setText("#"+Long.toString(mServer.getId())+"   "+mServer.getTitle());
             TextView label2 = (TextView) row.findViewById(R.id.label2);
-            label2.setText(this.items.get(position).getDescription());
+            label2.setText(mServer.getDescription());
 
             Button buttonDelete = (Button) row.findViewById(R.id.buttonDelete);
 

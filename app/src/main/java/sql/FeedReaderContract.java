@@ -12,7 +12,6 @@ public class FeedReaderContract {
 
     /* Inner class that defines the table contents */
     public static class Servers implements BaseColumns {
-        public static final int ROW_ID = 0;
         public static final String TABLE_NAME = "servers";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_NAME_TITLE = "title";
