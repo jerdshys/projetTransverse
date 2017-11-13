@@ -26,17 +26,17 @@ public class EditServerActivity extends FragmentActivity {
                 return;
             }
 
+            String s = getIntent().getStringExtra("id");
+
             ServerDbHelper helper = new ServerDbHelper(this);
 
             EditServerFragment firstFragment = new EditServerFragment();
             firstFragment.setArguments(getIntent().getExtras());
-            EditServerPresenter mEditServerPresenter = new EditServerPresenter(firstFragment);
 
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
         }
     }
-
 
 
 

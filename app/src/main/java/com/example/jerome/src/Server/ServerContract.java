@@ -1,6 +1,7 @@
 package com.example.jerome.src.Server;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import sql.Models.Server;
 
@@ -13,8 +14,6 @@ public interface ServerContract {
         void showServers(ArrayList<Server> servers);
         void openServerDetails();
         void openNewServer();
-        void updateList();
-
     }
 
     interface Presenter  {

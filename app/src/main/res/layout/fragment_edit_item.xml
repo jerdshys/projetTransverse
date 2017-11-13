@@ -3,33 +3,55 @@
     android:layout_height="match_parent"
     tools:context="com.example.jerome.src.ServerDetail.EditServerFragment">
 
-    <TextView         android:id="@+id/itemTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent">
+
+    <TextView android:id="@+id/itemTitle"
+        android:padding="15dp"
+        android:textSize="14dp"
+        android:text="Editer le serveur"
+        android:layout_width="fill_parent"
+        android:background="#E2E2E2"
+        android:color="#2E2E2E"
+        android:layout_height="50dp"
+        android:layout_marginBottom="40dp"
+
+     />
+
     <EditText
-        android:id="@+id/ip"
+        android:id="@+id/nameEdit"
         android:layout_height="wrap_content"
         android:hint="adresse ip"
         android:inputType="textPersonName"
         android:layout_width="fill_parent"
-        android:layout_below="@+id/itemTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="58dp">
+        android:layout_marginBottom="10dp"
+
+        >
     </EditText>
     <EditText
-        android:id="@+id/description"
+        android:id="@+id/descriptionEdit"
         android:layout_height="wrap_content"
         android:hint="description"
         android:inputType="textPersonName"
         android:layout_width="fill_parent"
-        android:layout_below="@+id/ip"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_marginBottom="30dp"
+
+        >
     </EditText>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <Button
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_height="40dp"
+            android:background="#c0392b"
+            android:textColor="#FFFFFF"
+            android:layout_width="200dp"
+            android:text="Enregistrer les modifications"
+            android:id="@+id/buttonEdit"
+         />
 
+
+    </LinearLayout>
 </FrameLayout>

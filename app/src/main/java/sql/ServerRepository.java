@@ -30,14 +30,14 @@ public class ServerRepository {
         // @todo : dynamic add
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
+/*        ContentValues values = new ContentValues();
         values.put(mFeedReader.COLUMN_NAME_TITLE, "serveur1");
         values.put(mFeedReader.COLUMN_NAME_DESCRIPTION, "192.168.0.1");
         long newRowId = db.insert(mFeedReader.TABLE_NAME, null, values);
 
         values.put(mFeedReader.COLUMN_NAME_TITLE, "serveurZ");
         values.put(mFeedReader.COLUMN_NAME_DESCRIPTION, "192.168.0.Z");
-        long newRowId2 = db.insert(mFeedReader.TABLE_NAME, null, values);
+        long newRowId2 = db.insert(mFeedReader.TABLE_NAME, null, values);*/
     }
 
     public ArrayList<Server> getAll() {
@@ -52,7 +52,26 @@ public class ServerRepository {
         return servers;
     }
 
-    public void put() {
+    public Server get(long id) {
+        Server server = null;
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        String query = "SELECT * FROM " + mFeedReader.TABLE_NAME + " WHERE "+mFeedReader.COLUMN_ID+" = ?";
+        Cursor result = db.rawQuery(query, new String[] { Long.toString(id) });
+        if(result.moveToFirst()){
+            server = new Server( result.getLong(0),
+                    result.getString(result.getColumnIndex(mFeedReader.COLUMN_NAME_TITLE)),
+                    result.getString(result.getColumnIndex(mFeedReader.COLUMN_NAME_DESCRIPTION)));
+        }
+        return server;
+
+    }
+
+    public void put(Long id,String name , String description) {
+        SQLiteDatabase db = this.mDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(mFeedReader.COLUMN_NAME_TITLE, name);
+        values.put(mFeedReader.COLUMN_NAME_DESCRIPTION, description);
+        db.update(mFeedReader.TABLE_NAME, values, "_id="+id, null);
 
     }
 

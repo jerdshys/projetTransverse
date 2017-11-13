@@ -31,24 +31,29 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
     private ServerContract.Presenter mPresenter;
     private ViewGroup container;
     private SwipeLayout mSwipeLayout;
+    private ListAdapter mListAdapter;
 
     public ServerFragment() {
-
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         System.out.println("setting up listadapter");
-
         ServerDbHelper helper = new ServerDbHelper(this.getContext());
         ServerRepository repo = new ServerRepository(this.getContext());
         mPresenter = new ServerPresenter(repo ,this);
-
-
+        ArrayList<Server> emptyList = new ArrayList<Server>();
+        mListAdapter = new ListAdapter(this.getContext() , R.layout.custom_listview, new ArrayList<Server>(),mItemListener);
         return inflater.inflate(R.layout.fragment_servers, container, false);
+    }
+    
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        mPresenter.loadServers();
+
     }
 
 
@@ -70,10 +75,16 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
         startActivity(i);
     }
 
-    @Override
-    public void updateList() {
-       // myAdapter.remove(myAdapter.getItem(info.position));
-       // myAdapter.notifyDataSetChanged();
+    public void replaceData(ArrayList<Server> servers) {
+        setList(servers);
+        mListAdapter.notifyDataSetChanged();
+    }
+
+
+
+
+    private void setList(ArrayList<Server> items) {
+        items = items;
     }
 
 
@@ -83,17 +94,20 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
     ServerItemListener mItemListener = new ServerItemListener() {
         @Override
         public void onServerClick(Server clickedServer) {
+            System.out.println("clickedserver");
+
+            System.out.println(clickedServer.getId().toString());
             Intent i = new Intent(getContext(),EditServerActivity.class);
+            i.putExtra("id", clickedServer.getId().toString());
             startActivity(i);
         }
-
         @Override
         public void onServerDelete(Server clickedServer) {
            mPresenter.deleteServer(clickedServer.getId());
-          //  Intent i = new Intent(getContext(),EditServerActivity.class);
-         //   startActivity(i);
         }
     };
+
+
 
     public class ListAdapter extends ArrayAdapter<Server> {
         Context context;
@@ -147,34 +161,18 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
             mSwipeLayout.addDrag(SwipeLayout.DragEdge.Left, row.findViewById(R.id.bottom_wrapper));
 
             mSwipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
+                @Override   //when the SurfaceView totally cover the BottomView.
+                public void onClose(SwipeLayout layout) { }
+                @Override  //you are swiping.
+                public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {}
                 @Override
-                public void onClose(SwipeLayout layout) {
-                    //when the SurfaceView totally cover the BottomView.
-                }
-
+                public void onStartOpen(SwipeLayout layout) { }
+                @Override //when the BottomView totally show.
+                public void onOpen(SwipeLayout layout) { }
                 @Override
-                public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {
-                    //you are swiping.
-                }
-
-                @Override
-                public void onStartOpen(SwipeLayout layout) {
-
-                }
-
-                @Override
-                public void onOpen(SwipeLayout layout) {
-                    //when the BottomView totally show.
-                }
-
-                @Override
-                public void onStartClose(SwipeLayout layout) {
-
-                }
-
-                @Override
+                public void onStartClose(SwipeLayout layout) { }
+                @Override //when user's hand released.
                 public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
-                    //when user's hand released.
                 }
             });
 
@@ -183,13 +181,9 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
         }
     }
 
-
     public interface ServerItemListener {
-
         void onServerClick(Server clickedServ);
         void onServerDelete(Server clickedServ);
-
-
     }
 
 

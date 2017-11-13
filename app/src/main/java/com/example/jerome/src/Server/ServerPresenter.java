@@ -23,8 +23,8 @@ public class ServerPresenter implements ServerContract.Presenter {
 
     @Override
     public void loadServers() {
-      ArrayList<Server> servers = mServerRepository.getAll();
-        this.mServerView.showServers(servers);
+       ArrayList<Server> servers = mServerRepository.getAll();
+       this.mServerView.showServers(servers);
     }
 
     @Override
@@ -35,6 +35,7 @@ public class ServerPresenter implements ServerContract.Presenter {
     @Override
     public void deleteServer(Long id) {
         mServerRepository.delete(id);
+        this.loadServers();
     }
 
 

@@ -35,7 +35,7 @@ public class Server {
     }
 
     public String toString() {
-        return this.title+" "+this.description;
+        return this.id+" "+this.title+" "+this.description;
     }
 
 }

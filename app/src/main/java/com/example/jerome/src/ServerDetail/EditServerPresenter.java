@@ -1,20 +1,31 @@
 package com.example.jerome.src.ServerDetail;
 
+import android.support.annotation.NonNull;
+
+import com.example.jerome.src.Server.ServerContract;
+
+import sql.Models.Server;
+import sql.ServerRepository;
+
 /**
  * Created by jerome on 26/10/2017.
  */
 public class EditServerPresenter implements EditServerContract.Presenter {
 
     private EditServerContract.View mEditServerView;
+    private ServerRepository mServerRepository;
 
     // le presenter doit connaître la vue
-    public EditServerPresenter(EditServerContract.View editServerView) {
+    public EditServerPresenter(@NonNull ServerRepository ServerRepository, @NonNull EditServerContract.View editServerView) {
         mEditServerView = editServerView;
+        mServerRepository = ServerRepository;
+        mEditServerView.showServerDetail( mServerRepository.get(Long.parseLong(mEditServerView.getServerId())));
+
     }
 
     @Override
-    public void saveEditServer() {
-
+    public void saveEditServer(Long id, String name, String description) {
+        mServerRepository.put(id, name, description);
     }
 
 }
