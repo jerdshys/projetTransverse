@@ -76,11 +76,21 @@ public class ServerRepository {
     }
 
     public void post(String name, String description) {
+        System.out.println("*************************");
+        System.out.println("*************************");
+        System.out.println("*************************");
+        System.out.println("*************************");
+        System.out.println("*************************");
+        System.out.println(name+" "+description);
+        System.out.println("*************************");
+        System.out.println("*************************");
         // @todo : dynamic add
         SQLiteDatabase db = this.mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mFeedReader.COLUMN_NAME_TITLE, name);
         values.put(mFeedReader.COLUMN_NAME_DESCRIPTION, description);
+        db.insert(mFeedReader.TABLE_NAME, null, values);
+
     }
 
     public void deleteAll() {

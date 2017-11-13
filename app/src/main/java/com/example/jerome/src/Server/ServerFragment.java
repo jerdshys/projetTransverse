@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,8 +47,20 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
         ArrayList<Server> emptyList = new ArrayList<Server>();
         mListAdapter = new ListAdapter(this.getContext() , R.layout.custom_listview, new ArrayList<Server>(),mItemListener);
         return inflater.inflate(R.layout.fragment_servers, container, false);
+
     }
-    
+
+
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Button mButtonAdd = (Button) view.findViewById(R.id.buttonAdd);
+        mButtonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewServer();
+            }
+        });
+    }
 
     @Override
     public void onResume() {
@@ -77,10 +90,10 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
 
     public void replaceData(ArrayList<Server> servers) {
         setList(servers);
-        mListAdapter.notifyDataSetChanged();
+        mListAdapter.notifyDataSetChanged(
+
+    );
     }
-
-
 
 
     private void setList(ArrayList<Server> items) {

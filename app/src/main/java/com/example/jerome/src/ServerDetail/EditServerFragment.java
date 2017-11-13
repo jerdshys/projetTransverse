@@ -50,13 +50,7 @@ public class EditServerFragment extends Fragment implements EditServerContract.V
     @Override
     public void showServerDetail(Server server) {
         final Server s = server;
-        System.out.println("----------------------------------------");
-        System.out.println("----------------------------------------");
-        System.out.println("----------------------------------------");
-        System.out.println("----------------------------------------");
-        System.out.println("----------------------------------------");
-        System.out.println("----------------------------------------");
-        System.out.println("showserver detail  ----------------------------------------");
+
         mTitleEdit = (EditText) getView().findViewById(R.id.nameEdit);
         mDescriptionEdit = (EditText) getView().findViewById(R.id.descriptionEdit);
         mButtonEdit = (Button) getView().findViewById(R.id.buttonEdit);
