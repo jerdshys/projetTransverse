@@ -1,7 +1,7 @@
 package com.example.jerome.src.Server;
 
 import sql.Models.Server;
-import sql.ServerRepository;
+import sql.Repositories.ServerRepository;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;

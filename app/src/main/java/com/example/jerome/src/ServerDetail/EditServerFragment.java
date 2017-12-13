@@ -10,10 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.jerome.src.R;
-import com.example.jerome.src.Server.ServerPresenter;
 
 import sql.Models.Server;
-import sql.ServerRepository;
+import sql.Repositories.ServerRepository;
 
 
 public class EditServerFragment extends Fragment implements EditServerContract.View {

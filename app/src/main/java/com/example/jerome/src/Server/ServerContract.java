@@ -20,7 +20,5 @@ public interface ServerContract {
         void loadServers();
         void addNewServer();
         void deleteServer(Long id);
-
-
     }
 }

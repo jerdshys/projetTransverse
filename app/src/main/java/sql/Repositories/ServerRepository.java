@@ -1,4 +1,4 @@
-package sql;
+package sql.Repositories;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,13 +12,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
+import sql.FeedReaderContract;
 import sql.Models.Server;
+import sql.RepoInterface;
+import sql.ServerDbHelper;
 
 /**
  * Created by jerome on 25/10/2017.
  */
 @Module
-public class ServerRepository {
+public class ServerRepository implements RepoInterface {
 
     private final ServerDbHelper mDbHelper;
     private FeedReaderContract.Servers mFeedReader;
@@ -100,7 +103,6 @@ public class ServerRepository {
 
     public void delete(Long id) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
         db.delete(mFeedReader.TABLE_NAME, mFeedReader.COLUMN_ID + " = ?",
                 new String[]{Long.toString(id)} );
         db.close();

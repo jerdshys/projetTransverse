@@ -12,11 +12,8 @@ import android.widget.EditText;
 import com.example.jerome.src.R;
 import com.example.jerome.src.Server.NewServerContract;
 import com.example.jerome.src.Server.ServerActivity;
-import com.example.jerome.src.Server.ServerContract;
-import com.example.jerome.src.ServerDetail.EditServerActivity;
-import com.example.jerome.src.ServerDetail.EditServerPresenter;
 
-import sql.ServerRepository;
+import sql.Repositories.ServerRepository;
 
 /**
  * Created by jerome on 13/11/2017.

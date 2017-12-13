@@ -1,26 +1,14 @@
 package com.example.jerome.src.Server;
 
-import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.jerome.src.R;
 import com.example.jerome.src.ServerDetail.EditServerActivity;
-
-import java.util.ArrayList;
-
-import sql.Models.Server;
-import sql.ServerDbHelper;
-import sql.ServerRepository;
 
 
 public class ServerActivity extends FragmentActivity{

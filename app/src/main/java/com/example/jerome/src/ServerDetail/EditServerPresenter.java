@@ -2,10 +2,7 @@ package com.example.jerome.src.ServerDetail;
 
 import android.support.annotation.NonNull;
 
-import com.example.jerome.src.Server.ServerContract;
-
-import sql.Models.Server;
-import sql.ServerRepository;
+import sql.Repositories.ServerRepository;
 
 /**
  * Created by jerome on 26/10/2017.
