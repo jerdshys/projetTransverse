@@ -1,4 +1,4 @@
-package com.example.jerome.src.Server;
+package com.example.jerome.src.Capteur;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,18 +20,18 @@ import com.example.jerome.src.ServerDetail.EditServerActivity;
 import java.util.ArrayList;
 
 import sql.Models.Server;
-import sql.ServerDbHelper;
 import sql.Repositories.ServerRepository;
+import sql.ServerDbHelper;
 
 
-public class ServerFragment extends ListFragment implements ServerContract.View {
+public class CapteurFragment extends ListFragment implements CapteurContract.View {
 
-    private ServerContract.Presenter mPresenter;
+    private CapteurContract.Presenter mPresenter;
     private ViewGroup container;
     private SwipeLayout mSwipeLayout;
     private ListAdapter mListAdapter;
 
-    public ServerFragment() {
+    public CapteurFragment() {
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
         System.out.println("setting up listadapter");
         ServerDbHelper helper = new ServerDbHelper(this.getContext());
         ServerRepository repo = new ServerRepository(this.getContext());
-        mPresenter = new ServerPresenter(repo ,this);
+        mPresenter = new CapteurPresenter(repo ,this);
         ArrayList<Server> emptyList = new ArrayList<Server>();
         mListAdapter = new ListAdapter(this.getContext() , R.layout.severs_custom_listview, new ArrayList<Server>(),mItemListener);
         return inflater.inflate(R.layout.servers_fragment, container, false);

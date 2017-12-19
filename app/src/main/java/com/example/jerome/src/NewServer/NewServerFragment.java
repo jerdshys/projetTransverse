@@ -28,7 +28,7 @@ public class NewServerFragment extends Fragment implements NewServerContract.Vie
                              Bundle savedInstanceState) {
         ServerRepository repo = new ServerRepository(this.getContext());
         mPresenter = new NewServerPresenter(repo , this);
-        return inflater.inflate(R.layout.fragment_new_server, container, false);
+        return inflater.inflate(R.layout.new_server_fragment, container, false);
     }
 
 

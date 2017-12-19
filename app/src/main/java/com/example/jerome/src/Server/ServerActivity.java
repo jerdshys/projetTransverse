@@ -17,7 +17,7 @@ public class ServerActivity extends FragmentActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.servers_activity);
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
@@ -50,7 +50,7 @@ public class ServerActivity extends FragmentActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent i = new Intent(getApplicationContext(), EditServerActivity.class);
         startActivity(i);
-        setContentView(R.layout.activity_edit_item);
+        setContentView(R.layout.edit_server_activity);
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.

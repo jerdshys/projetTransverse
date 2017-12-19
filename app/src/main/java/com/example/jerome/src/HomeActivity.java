@@ -49,6 +49,6 @@ public class HomeActivity extends ActionBarActivity {
         System.out.println("go to list view");
         Intent i = new Intent(getApplicationContext(),ServerActivity.class);
         startActivity(i);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.servers_activity);
     }
 }

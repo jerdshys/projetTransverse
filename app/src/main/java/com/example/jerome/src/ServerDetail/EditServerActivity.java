@@ -14,7 +14,7 @@ public class EditServerActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_item);
+        setContentView(R.layout.edit_server_activity);
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout

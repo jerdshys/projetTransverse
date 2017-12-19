@@ -30,7 +30,7 @@ public class EditServerFragment extends Fragment implements EditServerContract.V
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_edit_item, container, false);
+        return inflater.inflate(R.layout.edit_server_fragment, container, false);
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
