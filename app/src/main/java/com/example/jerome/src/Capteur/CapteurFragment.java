@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
+import com.example.jerome.src.EditCapteur.EditCapteurActivity;
+import com.example.jerome.src.NewCapteur.NewCapteurActivity;
 import com.example.jerome.src.NewServer.NewServerActivity;
 import com.example.jerome.src.R;
 import com.example.jerome.src.ServerDetail.EditServerActivity;
@@ -42,8 +44,8 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
         ServerRepository repo = new ServerRepository(this.getContext());
         mPresenter = new CapteurPresenter(repo ,this);
         ArrayList<Server> emptyList = new ArrayList<Server>();
-        mListAdapter = new ListAdapter(this.getContext() , R.layout.severs_custom_listview, new ArrayList<Server>(),mItemListener);
-        return inflater.inflate(R.layout.servers_fragment, container, false);
+        mListAdapter = new ListAdapter(this.getContext() , R.layout.capteurs_custom_listview, new ArrayList<Server>(),mItemListener);
+        return inflater.inflate(R.layout.capteurs_fragment, container, false);
 
     }
 
@@ -69,19 +71,19 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
 
     @Override
     public void showServers(ArrayList<Server> servers) {
-        ListAdapter adapter = new ListAdapter(this.getContext() , R.layout.severs_custom_listview, servers,mItemListener);
+        ListAdapter adapter = new ListAdapter(this.getContext() , R.layout.capteurs_custom_listview, servers,mItemListener);
         setListAdapter(adapter);
     }
 
     @Override
     public void openServerDetails() {
-        Intent i = new Intent(getContext(),EditServerActivity.class);
+        Intent i = new Intent(getContext(),EditCapteurActivity.class);
         startActivity(i);
     }
 
     @Override
     public void openNewServer() {
-        Intent i = new Intent(getContext(),NewServerActivity.class);
+        Intent i = new Intent(getContext(),NewCapteurActivity.class);
         startActivity(i);
     }
 
@@ -127,7 +129,7 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
         private ServerItemListener mItemListener;
 
         public ListAdapter(Context context, int layoutToBeInflated, final ArrayList<Server> items, ServerItemListener listener) {
-            super(context, R.layout.severs_custom_listview, items);
+            super(context, R.layout.capteurs_custom_listview, items);
             this.context = context;
             this.items = items;
             this.mItemListener = listener;
@@ -138,13 +140,13 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
             this.vg = vg;
             // Instantiates a layout XML file into its corresponding View objects
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            View row = inflater.inflate(R.layout.severs_custom_listview, null);
+            View row = inflater.inflate(R.layout.capteurs_custom_listview, null);
             // set label texts
             TextView label = (TextView) row.findViewById(R.id.label);
-            Server mServer =this.items.get(position);
+            Server mServer = this.items.get(position);
             label.setText("#"+Long.toString(mServer.getId())+"   "+mServer.getTitle());
-            TextView label2 = (TextView) row.findViewById(R.id.label2);
-            label2.setText(mServer.getDescription());
+           // TextView label2 = (TextView) row.findViewById(R.id.label2);
+           // label2.setText(mServer.getDescription());
 
             Button buttonDelete = (Button) row.findViewById(R.id.buttonDelete);
 

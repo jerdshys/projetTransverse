@@ -8,20 +8,19 @@ import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import sql.FeedReaderContract;
 import sql.Models.Server;
-import sql.RepoInterface;
+import sql.ServerRepoInterface;
 import sql.ServerDbHelper;
 
 /**
  * Created by jerome on 25/10/2017.
  */
 @Module
-public class ServerRepository implements RepoInterface {
+public class ServerRepository implements ServerRepoInterface {
 
     private final ServerDbHelper mDbHelper;
     private FeedReaderContract.Servers mFeedReader;

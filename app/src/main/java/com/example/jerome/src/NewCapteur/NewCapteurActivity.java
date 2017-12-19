@@ -1,23 +1,18 @@
-package com.example.jerome.src.Capteur;
+package com.example.jerome.src.NewCapteur;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import com.example.jerome.src.R;
-import com.example.jerome.src.ServerDetail.EditServerActivity;
 
-
-public class CapteurActivity extends FragmentActivity{
-    ListView listView ;
+public class NewCapteurActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.capteurs_activity);
+        setContentView(R.layout.new_capteur_activity);
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
@@ -28,37 +23,36 @@ public class CapteurActivity extends FragmentActivity{
             if (savedInstanceState != null) {
                 return;
             }
-            CapteurFragment firstFragment = new CapteurFragment();
+
+            String s = getIntent().getStringExtra("id");
+            NewCapteurFragment firstFragment = new NewCapteurFragment();
             firstFragment.setArguments(getIntent().getExtras());
 
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
         }
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_list_activity, menu);
+        getMenuInflater().inflate(R.menu.menu_new_server, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(getApplicationContext(), EditServerActivity.class);
-        startActivity(i);
-        setContentView(R.layout.edit_server_activity);
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
-
-
 }

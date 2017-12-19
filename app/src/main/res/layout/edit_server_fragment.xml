@@ -11,7 +11,7 @@
     <TextView android:id="@+id/itemTitle"
         android:padding="15dp"
         android:textSize="14dp"
-        android:text="Editer le serveur"
+        android:text="Editer le capteur"
         android:layout_width="fill_parent"
         android:background="#E2E2E2"
         android:color="#2E2E2E"

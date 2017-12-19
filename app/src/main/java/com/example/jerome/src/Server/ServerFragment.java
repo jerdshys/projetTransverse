@@ -42,7 +42,7 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
         ServerRepository repo = new ServerRepository(this.getContext());
         mPresenter = new ServerPresenter(repo ,this);
         ArrayList<Server> emptyList = new ArrayList<Server>();
-        mListAdapter = new ListAdapter(this.getContext() , R.layout.severs_custom_listview, new ArrayList<Server>(),mItemListener);
+        mListAdapter = new ListAdapter(this.getContext() , R.layout.servers_custom_listview, new ArrayList<Server>(),mItemListener);
         return inflater.inflate(R.layout.servers_fragment, container, false);
 
     }
@@ -69,7 +69,7 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
 
     @Override
     public void showServers(ArrayList<Server> servers) {
-        ListAdapter adapter = new ListAdapter(this.getContext() , R.layout.severs_custom_listview, servers,mItemListener);
+        ListAdapter adapter = new ListAdapter(this.getContext() , R.layout.servers_custom_listview, servers,mItemListener);
         setListAdapter(adapter);
     }
 
@@ -127,7 +127,7 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
         private ServerItemListener mItemListener;
 
         public ListAdapter(Context context, int layoutToBeInflated, final ArrayList<Server> items, ServerItemListener listener) {
-            super(context, R.layout.severs_custom_listview, items);
+            super(context, R.layout.servers_custom_listview, items);
             this.context = context;
             this.items = items;
             this.mItemListener = listener;
@@ -138,7 +138,7 @@ public class ServerFragment extends ListFragment implements ServerContract.View 
             this.vg = vg;
             // Instantiates a layout XML file into its corresponding View objects
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            View row = inflater.inflate(R.layout.severs_custom_listview, null);
+            View row = inflater.inflate(R.layout.servers_custom_listview, null);
             // set label texts
             TextView label = (TextView) row.findViewById(R.id.label);
             Server mServer =this.items.get(position);

@@ -8,7 +8,7 @@ import sql.Models.Server;
  * Created by jerome on 20/11/2017.
  */
 
-public interface RepoInterface {
+public interface ServerRepoInterface {
 
     public ArrayList<Server> getAll();
     public Server get(long id);

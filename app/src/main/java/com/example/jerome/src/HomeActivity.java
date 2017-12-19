@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.jerome.src.Capteur.CapteurActivity;
 import com.example.jerome.src.Server.ServerActivity;
 
 
@@ -47,8 +48,8 @@ public class HomeActivity extends ActionBarActivity {
     public void start(View v)
     {
         System.out.println("go to list view");
-        Intent i = new Intent(getApplicationContext(),ServerActivity.class);
+        Intent i = new Intent(getApplicationContext(),CapteurActivity.class);
         startActivity(i);
-        setContentView(R.layout.servers_activity);
+        setContentView(R.layout.capteurs_activity);
     }
 }

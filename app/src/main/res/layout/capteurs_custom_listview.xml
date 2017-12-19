@@ -1,0 +1,54 @@
+<!-- in nested Views, the child view always gets all the touch events first. if you want the parent view (in your case, the listView row), to get a touch event, you must return false on the child events or set them to be android:clickable="false" in the manifest.
+
+<LinearLayout android:clickable="false" xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:paddingTop="10dp" android:paddingBottom="10dp">
+-->
+
+    <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="80dp"   android:id="@+id/sample1"
+        >
+        <!-- Bottom View Start-->
+
+        <LinearLayout
+            android:id="@+id/bottom_wrapper"
+            android:layout_width="80dp"
+            android:weightSum="1"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="80dp"
+                android:background="#c0392b"
+                android:textColor="#FFFFFF"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_height="fill_parent"
+                android:text="x"
+                android:id="@+id/buttonDelete"
+                android:layout_weight="1" />
+
+
+            <!--What you want to show-->
+        </LinearLayout>
+        <!-- Bottom View End-->
+
+        <!-- Surface View Start -->
+        <LinearLayout
+            android:padding="15dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--What you want to show in SurfaceView-->
+
+            <TextView android:textSize="14dp" android:id="@+id/label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="5"/>
+
+            <Switch
+                android:id="@+id/simpleSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <!-- Surface View End -->
+    </com.daimajia.swipe.SwipeLayout>
+
+
+
+

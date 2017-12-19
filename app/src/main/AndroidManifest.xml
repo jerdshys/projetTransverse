@@ -18,15 +18,27 @@
         </activity>
         <activity
             android:name=".Server.ServerActivity"
-            android:label="@string/title_activity_list_acttivity" >
+            android:label="ServerActivity" >
         </activity>
         <activity
             android:name=".ServerDetail.EditServerActivity"
-            android:label="@string/title_activity_edit_item" >
+            android:label="EditServerActivity" >
         </activity>
         <activity
             android:name=".NewServer.NewServerActivity"
             android:label="@string/title_activity_new_server" >
+        </activity>
+        <activity
+            android:name=".Capteur.CapteurActivity"
+            android:label="CapteurActivity" >
+        </activity>
+        <activity
+            android:name=".NewCapteur.NewCapteurActivity"
+            android:label="NewCapteurActivity" >
+        </activity>
+        <activity
+            android:name=".EditCapteur.EditCapteurActivity"
+            android:label="EditCapteurActivity" >
         </activity>
     </application>
 
