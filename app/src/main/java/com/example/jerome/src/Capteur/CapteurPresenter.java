@@ -21,6 +21,7 @@ public class CapteurPresenter implements CapteurContract.Presenter {
 
     private HttpCapteurRepository mCapteurRepository;
     private CapteurContract.View mServerView;
+    private ArrayList<Capteur> capteurs = new ArrayList<Capteur>();
 
 
     public CapteurPresenter(@NonNull HttpCapteurRepository mCapteurRepository, @NonNull CapteurContract.View mServerView) {
@@ -60,6 +61,7 @@ public class CapteurPresenter implements CapteurContract.Presenter {
                     }
 
                 }
+                this.capteurs = capteurs;
                 mServerView.showCapteurs(capteurs);
 
 

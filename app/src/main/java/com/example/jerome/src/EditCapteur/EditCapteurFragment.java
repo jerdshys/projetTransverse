@@ -18,6 +18,7 @@ import sql.Repositories.HttpCapteurRepository;
 import sql.Repositories.ServerRepository;
 
 
+
 public class EditCapteurFragment extends Fragment implements EditCapteurContract.View {
 
     private EditCapteurContract.Presenter mPresenter;
@@ -26,25 +27,20 @@ public class EditCapteurFragment extends Fragment implements EditCapteurContract
     private Button mButtonEdit,mButtonBack;
 
     public EditCapteurFragment() {
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.edit_capteur_fragment, container, false);
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
         HttpCapteurRepository repo = new HttpCapteurRepository(this.getContext());
         mPresenter = new EditCapteurPresenter(repo , this);
         mTitleEdit = (EditText) getView().findViewById(R.id.nameEdit);
         mDescriptionEdit = (EditText) getView().findViewById(R.id.descriptionEdit);
-
     }
-
 
     public String getServerId() {
         return getActivity().getIntent().getStringExtra("id");
@@ -52,11 +48,9 @@ public class EditCapteurFragment extends Fragment implements EditCapteurContract
 
     public void showServerDetail(Capteur capteur) {
         final Capteur s = capteur;
-
         mTitleEdit = (EditText) getView().findViewById(R.id.nameEdit);
         mDescriptionEdit = (EditText) getView().findViewById(R.id.descriptionEdit);
         mButtonEdit = (Button) getView().findViewById(R.id.buttonEdit);
-
         System.out.println(capteur.toString());
         mTitleEdit.setText(capteur.getName(), TextView.BufferType.EDITABLE);
 
@@ -66,9 +60,6 @@ public class EditCapteurFragment extends Fragment implements EditCapteurContract
                 mPresenter.saveEditServer(s.getId(), mTitleEdit.getText().toString());
             }
         });
-
-
-
 
     }
 }

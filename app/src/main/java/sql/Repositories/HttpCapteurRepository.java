@@ -31,6 +31,16 @@ public class HttpCapteurRepository implements CapteurRepoInterface {
     private RequestQueue queue;
     private String path;
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    private String result;
+
     public HttpCapteurRepository(Context context) {
         queue = Volley.newRequestQueue(context.getApplicationContext());
         path = "https://serveurprojet.herokuapp.com/api";
