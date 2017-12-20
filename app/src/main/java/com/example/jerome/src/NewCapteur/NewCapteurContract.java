@@ -6,11 +6,11 @@ package com.example.jerome.src.NewCapteur;
 public interface NewCapteurContract {
 
     interface View  {
-        void clickAdd(String name, String description);
+        void clickAdd(String name);
 
     }
 
     interface Presenter  {
-        void saveServer(String name, String description);
+        void saveServer(String name);
     }
 }

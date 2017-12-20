@@ -2,6 +2,7 @@ package com.example.jerome.src.NewCapteur;
 
 import android.support.annotation.NonNull;
 
+import sql.Repositories.HttpCapteurRepository;
 import sql.Repositories.ServerRepository;
 
 /**
@@ -9,17 +10,17 @@ import sql.Repositories.ServerRepository;
  */
 public class NewCapteurPresenter implements NewCapteurContract.Presenter {
 
-    private ServerRepository mServerRepository;
+    private HttpCapteurRepository mCapteurRepository;
     private NewCapteurContract.View mServerView;
 
     // le presenter doit connaître la vue
-    public NewCapteurPresenter(@NonNull ServerRepository ServerRepository, @NonNull NewCapteurContract.View mNewServerView) {
+    public NewCapteurPresenter(@NonNull HttpCapteurRepository mCapteurRepository, @NonNull NewCapteurContract.View mNewServerView) {
         mNewServerView = mNewServerView;
-        mServerRepository = ServerRepository;
+        mCapteurRepository = mCapteurRepository;
     }
 
     @Override
-    public void saveServer(String name, String description) {
-        mServerRepository.post(name, description);
+    public void saveServer(String name) {
+        mCapteurRepository.post(name);
     }
 }

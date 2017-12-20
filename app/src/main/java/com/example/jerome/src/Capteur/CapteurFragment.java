@@ -22,6 +22,7 @@ import com.example.jerome.src.ServerDetail.EditServerActivity;
 import java.util.ArrayList;
 
 import sql.Models.Server;
+import sql.Repositories.HttpCapteurRepository;
 import sql.Repositories.ServerRepository;
 import sql.ServerDbHelper;
 
@@ -41,12 +42,11 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
                              Bundle savedInstanceState) {
         System.out.println("setting up listadapter");
         ServerDbHelper helper = new ServerDbHelper(this.getContext());
-        ServerRepository repo = new ServerRepository(this.getContext());
+        HttpCapteurRepository repo = new HttpCapteurRepository(this.getContext());
         mPresenter = new CapteurPresenter(repo ,this);
         ArrayList<Server> emptyList = new ArrayList<Server>();
         mListAdapter = new ListAdapter(this.getContext() , R.layout.capteurs_custom_listview, new ArrayList<Server>(),mItemListener);
         return inflater.inflate(R.layout.capteurs_fragment, container, false);
-
     }
 
 

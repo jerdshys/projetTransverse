@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 
 import sql.Models.Server;
+import sql.Repositories.HttpCapteurRepository;
 import sql.Repositories.ServerRepository;
 
 /**
@@ -12,19 +13,19 @@ import sql.Repositories.ServerRepository;
  */
 public class CapteurPresenter implements CapteurContract.Presenter {
 
-    private ServerRepository mServerRepository;
+    private HttpCapteurRepository mCapteurRepository;
     private CapteurContract.View mServerView;
 
 
-    public CapteurPresenter(@NonNull ServerRepository mServerRepository, @NonNull CapteurContract.View mServerView) {
-        this.mServerRepository =  mServerRepository;
+    public CapteurPresenter(@NonNull HttpCapteurRepository mCapteurRepository, @NonNull CapteurContract.View mServerView) {
+        this.mCapteurRepository =  mCapteurRepository;
         this.mServerView = mServerView;
         this.loadServers();
     }
 
     @Override
     public void loadServers() {
-       ArrayList<Server> servers = mServerRepository.getAll();
+       ArrayList<Server> servers = mCapteurRepository.getAll();
        this.mServerView.showServers(servers);
     }
 
@@ -35,7 +36,7 @@ public class CapteurPresenter implements CapteurContract.Presenter {
 
     @Override
     public void deleteServer(Long id) {
-        mServerRepository.delete(id);
+        mCapteurRepository.delete(id);
         this.loadServers();
     }
 

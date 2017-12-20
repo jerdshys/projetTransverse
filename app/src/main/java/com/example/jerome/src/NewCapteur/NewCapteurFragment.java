@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.example.jerome.src.R;
 import com.example.jerome.src.Server.ServerActivity;
 
+import sql.Repositories.HttpCapteurRepository;
 import sql.Repositories.ServerRepository;
 
 /**
@@ -25,8 +26,8 @@ public class NewCapteurFragment extends Fragment implements NewCapteurContract.V
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ServerRepository repo = new ServerRepository(this.getContext());
-        mPresenter = new NewCapteurPresenter(repo , this);
+        HttpCapteurRepository repo = new HttpCapteurRepository(this.getContext());
+        mPresenter = new NewCapteurPresenter(repo, this);
         return inflater.inflate(R.layout.new_capteur_fragment, container, false);
     }
 
@@ -40,13 +41,13 @@ public class NewCapteurFragment extends Fragment implements NewCapteurContract.V
         mButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickAdd(mNameAdd.getText().toString(),mDescriptionAdd.getText().toString());
+                clickAdd(mNameAdd.getText().toString());
             }
         });
     }
     @Override
-    public void clickAdd(String name, String description) {
-        mPresenter.saveServer(name,description);
+    public void clickAdd(String name) {
+        mPresenter.saveServer(name);
         Intent i = new Intent(getContext(),ServerActivity.class);
         startActivity(i);
 
