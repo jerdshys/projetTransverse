@@ -15,16 +15,15 @@ import android.widget.TextView;
 import com.daimajia.swipe.SwipeLayout;
 import com.example.jerome.src.EditCapteur.EditCapteurActivity;
 import com.example.jerome.src.NewCapteur.NewCapteurActivity;
-import com.example.jerome.src.NewServer.NewServerActivity;
+import com.example.jerome.src.NewCapteur.NewCapteurActivity;
 import com.example.jerome.src.R;
-import com.example.jerome.src.ServerDetail.EditServerActivity;
 
 import java.util.ArrayList;
 
-import sql.Models.Server;
+import sql.Models.Capteur;
+import sql.Models.Capteur;
 import sql.Repositories.HttpCapteurRepository;
-import sql.Repositories.ServerRepository;
-import sql.ServerDbHelper;
+
 
 
 public class CapteurFragment extends ListFragment implements CapteurContract.View {
@@ -41,11 +40,10 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         System.out.println("setting up listadapter");
-        ServerDbHelper helper = new ServerDbHelper(this.getContext());
         HttpCapteurRepository repo = new HttpCapteurRepository(this.getContext());
         mPresenter = new CapteurPresenter(repo ,this);
-        ArrayList<Server> emptyList = new ArrayList<Server>();
-        mListAdapter = new ListAdapter(this.getContext() , R.layout.capteurs_custom_listview, new ArrayList<Server>(),mItemListener);
+        ArrayList<Capteur> emptyList = new ArrayList<Capteur>();
+        mListAdapter = new ListAdapter(this.getContext() , R.layout.capteurs_custom_listview, new ArrayList<Capteur>(),mItemListener);
         return inflater.inflate(R.layout.capteurs_fragment, container, false);
     }
 
@@ -56,7 +54,7 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
         mButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewServer();
+                openNewCapteur();
             }
         });
     }
@@ -64,38 +62,36 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
-        mPresenter.loadServers();
+        mPresenter.loadCapteurs();
 
     }
 
 
     @Override
-    public void showServers(ArrayList<Server> servers) {
-        ListAdapter adapter = new ListAdapter(this.getContext() , R.layout.capteurs_custom_listview, servers,mItemListener);
+    public void showCapteurs(ArrayList<Capteur> capteurs) {
+        ListAdapter adapter = new ListAdapter(this.getContext() , R.layout.capteurs_custom_listview, capteurs,mItemListener);
         setListAdapter(adapter);
     }
 
     @Override
-    public void openServerDetails() {
+    public void openCapteurDetails() {
         Intent i = new Intent(getContext(),EditCapteurActivity.class);
         startActivity(i);
     }
 
     @Override
-    public void openNewServer() {
+    public void openNewCapteur() {
         Intent i = new Intent(getContext(),NewCapteurActivity.class);
         startActivity(i);
     }
 
-    public void replaceData(ArrayList<Server> servers) {
-        setList(servers);
-        mListAdapter.notifyDataSetChanged(
-
-    );
+    public void replaceData(ArrayList<Capteur> capteurs) {
+        setList(capteurs);
+        mListAdapter.notifyDataSetChanged();
     }
 
 
-    private void setList(ArrayList<Server> items) {
+    private void setList(ArrayList<Capteur> items) {
         items = items;
     }
 
@@ -103,32 +99,32 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
     /**
      * Listener for clicks on tasks in the ListView.
      */
-    ServerItemListener mItemListener = new ServerItemListener() {
+    CapteurItemListener mItemListener = new CapteurItemListener() {
         @Override
-        public void onServerClick(Server clickedServer) {
-            System.out.println("clickedserver");
-
-            System.out.println(clickedServer.getId().toString());
-            Intent i = new Intent(getContext(),EditServerActivity.class);
-            i.putExtra("id", clickedServer.getId().toString());
+        public void onCapteurClick(Capteur clickedCapteur) {
+            System.out.println("clickedCapteur");
+            System.out.println(clickedCapteur.getId().toString());
+            Intent i = new Intent(getContext(),EditCapteurActivity.class);
+            i.putExtra("id", clickedCapteur.getId().toString());
             startActivity(i);
         }
+
         @Override
-        public void onServerDelete(Server clickedServer) {
-           mPresenter.deleteServer(clickedServer.getId());
+        public void onCapteurDelete(Capteur clickedCapteur) {
+           mPresenter.deleteCapteur(clickedCapteur.getId());
         }
     };
 
 
 
-    public class ListAdapter extends ArrayAdapter<Server> {
+    public class ListAdapter extends ArrayAdapter<Capteur> {
         Context context;
-        ArrayList<Server> items;
+        ArrayList<Capteur> items;
         ViewGroup vg;
 
-        private ServerItemListener mItemListener;
+        private CapteurItemListener mItemListener;
 
-        public ListAdapter(Context context, int layoutToBeInflated, final ArrayList<Server> items, ServerItemListener listener) {
+        public ListAdapter(Context context, int layoutToBeInflated, final ArrayList<Capteur> items, CapteurItemListener listener) {
             super(context, R.layout.capteurs_custom_listview, items);
             this.context = context;
             this.items = items;
@@ -143,26 +139,26 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
             View row = inflater.inflate(R.layout.capteurs_custom_listview, null);
             // set label texts
             TextView label = (TextView) row.findViewById(R.id.label);
-            Server mServer = this.items.get(position);
-            label.setText("#"+Long.toString(mServer.getId())+"   "+mServer.getTitle());
+            Capteur mCapteur = this.items.get(position);
+            label.setText("#"+mCapteur.getId()+"   "+mCapteur.getName());
            // TextView label2 = (TextView) row.findViewById(R.id.label2);
-           // label2.setText(mServer.getDescription());
+           // label2.setText(mCapteur.getDescription());
 
             Button buttonDelete = (Button) row.findViewById(R.id.buttonDelete);
 
 
-            final ArrayList<Server> list = this.items;
+            final ArrayList<Capteur> list = this.items;
             buttonDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mItemListener.onServerDelete(items.get(position));
+                    mItemListener.onCapteurDelete(items.get(position));
                 }
             });
 
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   mItemListener.onServerClick(items.get(position));
+                   mItemListener.onCapteurClick(items.get(position));
                 }
             });
 
@@ -193,9 +189,9 @@ public class CapteurFragment extends ListFragment implements CapteurContract.Vie
         }
     }
 
-    public interface ServerItemListener {
-        void onServerClick(Server clickedServ);
-        void onServerDelete(Server clickedServ);
+    public interface CapteurItemListener {
+        void onCapteurClick(Capteur clicked);
+        void onCapteurDelete(Capteur clicked);
     }
 
 

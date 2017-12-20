@@ -17,3 +17,6 @@ public interface ServerRepoInterface {
     public void delete(Long id);
 
 }
+
+
+

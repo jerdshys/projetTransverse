@@ -2,6 +2,7 @@ package com.example.jerome.src.Capteur;
 
 import java.util.ArrayList;
 
+import sql.Models.Capteur;
 import sql.Models.Server;
 
 /**
@@ -10,14 +11,14 @@ import sql.Models.Server;
 public interface CapteurContract {
 
     interface View  {
-        void showServers(ArrayList<Server> servers);
-        void openServerDetails();
-        void openNewServer();
+        void showCapteurs(ArrayList<Capteur> capteurs);
+        void openCapteurDetails();
+        void openNewCapteur();
     }
 
     interface Presenter  {
-        void loadServers();
-        void addNewServer();
-        void deleteServer(Long id);
+        void loadCapteurs();
+        void addNewCapteur();
+        void deleteCapteur(String id);
     }
 }

@@ -2,6 +2,7 @@ package sql;
 
 import java.util.ArrayList;
 
+import sql.Models.Capteur;
 import sql.Models.Server;
 
 /**
@@ -10,10 +11,10 @@ import sql.Models.Server;
 
 public interface CapteurRepoInterface {
 
-    public ArrayList<Server> getAll();
-    public Server get(long id);
-    public void put(Long id, String name, String description);
+    public void getAll(final VolleyCallback callback);
+    public Server get(String id);
+    public void put(String id, String name);
     public void post(String name);
-    public void delete(Long id);
+    public void delete(String id);
 
 }

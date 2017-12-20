@@ -10,13 +10,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import sql.CapteurRepoInterface;
+import sql.Models.Capteur;
 import sql.Models.Server;
-import sql.ServerRepoInterface;
+import sql.VolleyCallback;
 
 /**
  * Created by jerome on 19/12/2017.
@@ -33,8 +37,9 @@ public class HttpCapteurRepository implements CapteurRepoInterface {
     }
 
     @Override
-    public ArrayList<Server> getAll() {
+    public void getAll(final VolleyCallback callback) {
         String url = path+"/capteurs";
+        System.out.println("kkkk");
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -42,7 +47,8 @@ public class HttpCapteurRepository implements CapteurRepoInterface {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        System.out.println("Response is: "+ response.substring(0,500));
+                        System.out.println("Response is: "+ response);
+                        callback.onSuccessResponse(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -50,19 +56,19 @@ public class HttpCapteurRepository implements CapteurRepoInterface {
                 System.out.println("That didn't work!");
             }
         });
+
+
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
 
+    @Override
+    public Server get(String id) {
         return null;
     }
 
     @Override
-    public Server get(long id) {
-        return null;
-    }
-
-    @Override
-    public void put(Long id, String name, String description) {
+    public void put(String id, String name) {
 
     }
 
@@ -103,7 +109,7 @@ public class HttpCapteurRepository implements CapteurRepoInterface {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
 
     }
 }
